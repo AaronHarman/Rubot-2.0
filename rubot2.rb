@@ -11,7 +11,7 @@ PREFIX = '%' # the prefix used for commands. it only needs to be changed here
 load 'token.rb' # loads the file with the token in it. NOTE: This file is not included in the repo, and must declare a variable 'token' containing the string
 # create the bot
 # it is global to allow the loading stuff below to work properly
-$bot = Discordrb::Commands::CommandBot.new(token: token, prefix: PREFIX)
+$bot = Discordrb::Commands::CommandBot.new(token: $token, prefix: PREFIX)
 
 # Loads
 # Will reload all of the modules named in modules.txt, without needing to restart the bot
