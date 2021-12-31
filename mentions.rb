@@ -23,9 +23,7 @@ end
 
 # someone said hi
 def hello(event,last_hi,bot)
-  if event.author.id == 234862468789305344 # Jordyn
-    bot.send_message(event.channel.id, "Hi Mom! #{[':',':orange_',':yellow_',':green_',':blue_',':purple_',':brown_',':black_',':white_'].shuffle[0]+'heart:'}")
-  elsif event.author.id == 153307669405499393 # Alek
+  if event.author.id == 153307669405499393 # Alek
     bot.send_message(event.channel.id, 'Greetings, Mr. Biscardi!')
   else
     bot.send_message(event.channel.id, "Hello, " + event.author.mention)

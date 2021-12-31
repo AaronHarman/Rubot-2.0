@@ -129,6 +129,8 @@ $bot.command(:shitpost, min_args: 0, max_args: 2, description: "Says some nonsen
     channelID = 711112222956584980
   elsif event.server.id == 201830610619203584 # Peter Griffin's Ball Chin
     channelID = 277506818505310209
+  elsif event.server.id == 756605396894089276 # realshitpost
+    channelID = 756605397363589170
   else # any other channel
     channelID = event.channel.id
   end
@@ -173,6 +175,8 @@ $bot.command(:realshitpost, min_args: 0, max_args: 2, description: "Says the bes
     channelID = 711112222956584980
   elsif event.server.id == 201830610619203584 # Peter Griffin's Ball Chin
     channelID = 277506818505310209
+  elsif event.server.id == 756605396894089276 # realshitpost
+    channelID = 756605397363589170
   else # any other channel
     channelID = event.channel.id
   end
@@ -205,4 +209,3 @@ $bot.command(:eval, help_available: false) do |event, *code|
     'An error occurred :cry:'
   end
 end
-
