@@ -27,3 +27,8 @@ end
 $bot.message(contains: /hell.+yeah/i) do |event|
   $bot.send_message(event.channel.id, event.content[/hell/i]+' '+event.content[/yeah/i])
 end
+
+# smile
+$bot.message(contains: /smile/i) do |event|
+  $bot.send_message(event.channel.id, event.content[/smile/i])
+end
