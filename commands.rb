@@ -106,7 +106,7 @@ $bot.command(:badmeme, help_available: false) do |event|
 end
 
 # shitpost
-$bot.command(:shitpost, min_args: 0, max_args: 2, description: "Says some nonsense in the meme channel.", usage: "Either just "+PREFIX+"shitpost, or put a number after to specify the number of words. If you don't want the standard channel, put a different channel name after the number.") do |event,*args|
+$bot.command(:shitpost, min_args: 0, max_args: 2, description: "Says some nonsense.", usage: "Either just "+PREFIX+"shitpost, or put a number after to specify the number of words. If you don't want the standard channel, put a different channel name after the number.") do |event,*args|
   # determine the number of words to use
   if args.length == 0 # no args
     num_words = 3
@@ -129,7 +129,7 @@ $bot.command(:shitpost, min_args: 0, max_args: 2, description: "Says some nonsen
     channelID = 711112222956584980
   elsif event.server.id == 201830610619203584 # Peter Griffin's Ball Chin
     channelID = 277506818505310209
-  elsif event.server.id == 756605396894089276 # realshitpost
+  elsif event.server.id == 756605396894089276 # rats
     channelID = 756605397363589170
   else # any other channel
     channelID = event.channel.id
