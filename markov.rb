@@ -32,7 +32,12 @@ class Markov
   # sanitize input to have punctuation given extra space
   def sanitize(message)
     #punc = '!"#$%&()*+, -./:;<=>?@[\]^_`{|}~'
-    message.gsub(/[!"#\$%&\(\)\*\+,-\.\/:;<=>\?@\[\\\]\^_`\{\|\}~]/, ' \0 ')
+    message.gsub(/[!"#\$%&\(\)\*\+,-\.\/:;<=>\?@\[\\\]\^_`\{\|\}~]+/, ' \0 ')
+  end
+
+  # clear the whole chain for a user
+  def clear_user(id)
+    @chains.delete(id)
   end
 
   # add a word to a chain
@@ -63,7 +68,9 @@ class Markov
         add_word(id, [words[i], words[i+1], words[i+2]])
         add_word(0, [words[i], words[i+1], words[i+2]])
       end
+      return true
     end
+    return false
   end
 
   # generate a new message from the respective ID's chain
@@ -90,7 +97,7 @@ class Markov
           if chain[prevprev][prev] == nil
             break
           end
-          
+
           for key in chain[prevprev][prev].keys
             chain[prevprev][prev][key].times do
               choiche.push(key)
@@ -102,7 +109,42 @@ class Markov
           prev = cur
         end
       end
+
+      # post-processing on the generated message
+      
+
       return message
     end
   end
+end
+
+# Rubot Helper declarations
+$markov = Markov.new
+File.open('markov') do |f|
+  $markov = Marshal.load(f)
+end
+
+def markov_add(id, message)
+  worked = $markov.add_message(id, message)
+  File.open('markov','w+') do |f|
+    Marshal.dump($markov,f)
+  end
+  return worked
+end
+
+def markov_gen(id, num)
+  $markov.gen_message(id, num)
+end
+
+def markov_consent(yn, id)
+  result = nil
+  if yn
+    result = $markov.consent(id)
+  else
+    result = $markov.unconsent(id)
+  end
+  File.open('markov','w+') do |f|
+    Marshal.dump($markov,f)
+  end
+  return result
 end

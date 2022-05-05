@@ -209,3 +209,50 @@ $bot.command(:eval, help_available: false) do |event, *code|
     'An error occurred :cry:'
   end
 end
+
+# Markov Functions
+# consent - adds your id to the list that are allowed to be listened to
+$bot.command(:consent, description: "Consent to have your messages used to let Rubot learn to imitate you.", usage: "Just say \""+PREFIX+"consent\"") do |event|
+  result = markov_consent(true, event.author.id)
+  if result == nil
+    $bot.send_message(event.channel.id, 'You\'ve already consented :smile:')
+  else
+    $bot.send_message(event.channel.id, 'Rubot will now listen to your messages, and you can be imitated using "'+PREFIX+'imitate"')
+  end
+end
+
+# unconsent - removes your id from the list that are allowed to be listened to
+$bot.command(:unconsent, description: "Revoke consent to have your messages used to let Rubot learn to imitate you.", usage: "Just say \""+PREFIX+"unconsent\"") do |event|
+  result = markov_consent(false, event.author.id)
+  if result == nil
+    $bot.send_message(event.channel.id, 'You were not listed as consented :smile:')
+  else
+    $bot.send_message(event.channel.id, 'Rubot will no longer listen to your messages, and you can no longer be imitated using "'+PREFIX+'imitate"')
+  end
+end
+
+# imitate - attempts to imitate someone using markov chains
+$bot.command(:imitate, min_args: 1, max_args: 2, description: "Rubot imitates a user", usage: "Say \""+PREFIX+"imitate\" followed by an @ of the user to imitate") do |event, *args|
+  if args[0].start_with?("<@")
+    user_id = args[0].delete_prefix("<@").delete_suffix(">").to_i
+  elsif args[0] == "all"
+    user_id = 0
+  else
+    $bot.send_message(event.channel.id, 'Not a valid target :sob:')
+  end
+
+  num = 100
+  if args.length == 2
+    num = args[1].to_i
+  end
+  message = markov_gen(user_id, num)
+  if message == nil
+    $bot.send_message(event.channel.id, 'Either the user you chose has not consented to being imitated, or an error has occured. :cry:')
+  else
+    if user_id == 0
+      $bot.send_message(event.channel.id, "**Collective:**\n"+message)
+    else
+      $bot.send_message(event.channel.id, '**'+event.server.member(user_id).display_name+":**\n"+message)
+    end
+  end
+end

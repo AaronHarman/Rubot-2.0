@@ -32,3 +32,10 @@ end
 $bot.message(contains: /smile/i) do |event|
   $bot.send_message(event.channel.id, event.content[/smile/i])
 end
+
+# markov listening
+$bot.message do |event|
+  unless event.message.content.start_with?('%')
+    markov_add(event.author.id, event.message.content)
+  end
+end
