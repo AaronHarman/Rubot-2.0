@@ -35,6 +35,21 @@ class Markov
     message.gsub(/[!"#\$%&\(\)\*\+,-\.\/:;<=>\?@\[\\\]\^_`\{\|\}~]+/, ' \0 ')
   end
 
+  # fix up some formatting in the generated message
+  def post_process(message)
+    # fix mentions
+    message.gsub!(/<@ (?<id>\d+) >/, '<@\k<id>>')
+    message.gsub!(/<# (?<id>\d+) >/, '<#\k<id>>')
+    # fix emojis
+    message.gsub!(/: (?<name>\S+?) :/, ':\k<name>:')
+    # remove whitespace in front of some punctuation
+    message.gsub!(/ ([!,\.;\?\]\)\>\}%])/, '\1')
+    # remove whitespace after some punctuation
+    message.gsub!(/([\[\(\<\{#\$]) /, '\1')
+    #repair (haha) pairs of things
+    message.gsub(/(["'`]) ?(.+?) ?\1/, '\1\2\1')
+  end
+
   # clear the whole chain for a user
   def clear_user(id)
     @chains.delete(id)
@@ -111,7 +126,7 @@ class Markov
       end
 
       # post-processing on the generated message
-      
+      message = post_process(message)
 
       return message
     end
