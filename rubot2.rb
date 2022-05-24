@@ -33,6 +33,7 @@ $bot.command(:reload, help_available: false) do |event|
   # load each of the segments again
   loadFunctionality
   # and then send a message with a reloading gif
+  #$bot.send_message("Reloaded.",false,"https://tenor.com/view/lockandload-lock-load-arnold-schwarzenegger-gif-7977879")
   'Reloaded. https://tenor.com/view/lockandload-lock-load-arnold-schwarzenegger-gif-7977879'
 end
 

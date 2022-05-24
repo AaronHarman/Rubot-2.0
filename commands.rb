@@ -55,7 +55,8 @@ end
 
 # leaderboard - displays all of the users on the server and their score in order by score
 $bot.command(:leaderboard, description: "Shows the score of everyone on the server", usage: 'Just say "'+PREFIX+'leaderboard" to show the leaderboard') do |event|
-  users = event.server.members
+  #this is a super roundabout way of getting the user list, but for some reason it's the only way that gave an accurate list
+  users = event.message.server.users
   users.delete_if {|user| user.bot_account? }
   table = Array.new
   i = 0
