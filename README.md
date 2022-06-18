@@ -2,6 +2,8 @@
 A Discord bot written in Ruby.
 Contains a score system based around 💎s, which currently have no use outside of bragging rights.
 
+Profile picture art by Eric Bradley (@eric_i_guess)
+
 ## Commands
 - **%help** : Lists the commands available through use of the bot
 - **%stealthmode** : Alternates Rubot in and out of "stealth mode," where it appears to be offline.
