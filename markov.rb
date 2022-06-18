@@ -42,6 +42,7 @@ class Markov
     message.gsub!(/<# (?<id>\d+) >/, '<#\k<id>>')
     # fix emojis
     message.gsub!(/: (?<name>\S+?) :/, ':\k<name>:')
+    message.gsub!(/<:(?<name>\S+?): (?<id>\d+) >/, '<:\k<name>:\k<id>>')
     # fix commas in numbers
     message.gsub!(/(\d+) , (\d+)/, '\1,\2')
     # remove whitespace in front of some punctuation
