@@ -107,7 +107,7 @@ class Markov
         message.concat(" "+prev)
       end
       if num >= 3
-        for i in 2..num
+        for i in 3..num
           choiche = []
           if chain[prevprev] == nil
             break

@@ -215,6 +215,92 @@ $bot.command(:eval, help_available: false) do |event, *code|
   end
 end
 
+# roll - does dnd dice rolling
+$bot.command(:roll, min_args: 1, max_args: 20, description: "Roll some D&D Dice.", usage: "%roll help") do |event, *args|
+  sets = 1
+  dice = []
+  mods = []
+  # collect the arguments
+  for arg in args
+    if arg.match?(/^\d+$/)
+      sets = arg
+    elsif arg.match?(/^\d+d\d+$/)
+      dice.push(arg)
+    elsif arg.match?(/^\w+$/)
+      mods.push(arg)
+    end
+  end
+  # roll the dice
+  roll_sets = []
+  sets.to_i.times do
+    rolls = []
+    for die in dice
+      full, num, type = * /(\d+)d(\d+)/.match(die)
+      num.to_i.times do
+        rolls.push([rand(1..type.to_i), type.to_i])
+      end
+    end
+    roll_sets.push(rolls)
+  end
+  # handle modifiers
+  sort = true
+  for mod in mods
+    case mod
+      when /d\d+/ # drop x rolls
+        num = mod.delete_prefix("d").to_i
+        for rolls in roll_sets
+          rolls.sort!.reverse!
+          rolls.pop(num)
+        end
+      when /k\d+/ # keep x rolls
+        num = mod.delete_prefix("k").to_i
+        for rolls in roll_sets
+          if rolls.size-num > 0
+            rolls.sort!.reverse!
+            rolls.pop(rolls.size-num)
+          end
+        end
+      when /kl\d+/ # keep lowest x rolls
+        num = mod.delete_prefix("kl").to_i
+        for rolls in roll_sets
+          if rolls.size-num > 0
+            rolls.sort!
+            rolls.pop(rolls.size-num)
+          end
+        end
+      when /r\d+/ # reroll x or lower
+        num = mod.delete_prefix("r").to_i
+        for rolls in roll_sets
+          for die in rolls
+            if die[0] <= num
+              die[0] = rand(1..die[1])
+            end
+          end
+        end
+      when /u/ # unsorted
+        sort = false
+    end
+  end
+  # sort?
+  if sort
+    for rolls in roll_sets
+      rolls.sort!
+    end
+  end
+  # print
+  out = "Rolls:"
+  for rolls in roll_sets
+    out << "\n"
+    sum = 0
+    for die in rolls
+      out << die[0].to_s << ", "
+      sum += die[0]
+    end
+    out << "\tSum: " << sum.to_s
+  end
+  out
+end
+
 # Markov Functions
 # consent - adds your id to the list that are allowed to be listened to
 $bot.command(:consent, description: "Consent to have your messages used to let Rubot learn to imitate you.", usage: "Just say \""+PREFIX+"consent\"") do |event|

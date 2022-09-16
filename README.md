@@ -16,6 +16,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - **%consent** : Allows Rubot to learn from your messages, and be able to use the **%imitate** command on you.
 - **%unconsent** : Disallows Rubot from being able to learn from your messages or imitate you. It *will not* delete what Rubot has already learned; To have the data deleted, please contact the bot author (me!).
 - **%imitate** *<user mention> [max words]* : Uses Markov chains to imitate a user's messages. If not given a max number of words, it will stop after 100 words. It will often stop before hitting the max number of words if it does not know a word to follow the words it has already generated.
+- **%roll** *description pending ;)*
 
 ## Non-command Functionality
 - Saying "Ping!" will cause Rubot to respond "Pong!", following up with the amount of time taken to process the request.
