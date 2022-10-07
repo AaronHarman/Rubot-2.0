@@ -32,6 +32,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 **%roll** *#d#* (as many as you want)
 
 add a number before your dice to roll that many sets
+
 add these for particular changes:
 - d# : drop this many dice after rolling
 - k# : keep this many dice after rolling
