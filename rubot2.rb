@@ -34,7 +34,7 @@ $bot.command(:reload, help_available: false) do |event|
   loadFunctionality
   # and then send a message with a reloading gif
   #$bot.send_message("Reloaded.",false,"https://tenor.com/view/lockandload-lock-load-arnold-schwarzenegger-gif-7977879")
-  'Reloaded. https://tenor.com/view/lockandload-lock-load-arnold-schwarzenegger-gif-7977879'
+  'Reloaded. :) :white_check_mark:'
 end
 
 # when the bot is ready, set its status

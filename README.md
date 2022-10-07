@@ -16,7 +16,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - **%consent** : Allows Rubot to learn from your messages, and be able to use the **%imitate** command on you.
 - **%unconsent** : Disallows Rubot from being able to learn from your messages or imitate you. It *will not* delete what Rubot has already learned; To have the data deleted, please contact the bot author (me!).
 - **%imitate** *<user mention> [max words]* : Uses Markov chains to imitate a user's messages. If not given a max number of words, it will stop after 100 words. It will often stop before hitting the max number of words if it does not know a word to follow the words it has already generated.
-- **%roll** *description pending ;)*
+- **%roll** : Rolls dice. This command has quite a few options, see the Roll Options section.
 
 ## Non-command Functionality
 - Saying "Ping!" will cause Rubot to respond "Pong!", following up with the amount of time taken to process the request.
@@ -27,3 +27,15 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - If you mention Rubot while saying some rude words, it will get angry and remove 1💎 from your score.
 - If you mention and thank Rubot, it will respond politely.
 - If you mention Rubot and say hello, it will say hi back. Once per 24 hours, you will receive 1💎 for saying hello to Rubot.
+
+## Roll Options
+**%roll** *#d#* (as many as you want)
+
+add a number before your dice to roll that many sets
+add these for particular changes:
+- d# : drop this many dice after rolling
+- k# : keep this many dice after rolling
+- r# : reroll anything below this number once
+- kl# : keep this many dice after rolling, but keep the lowest ones
+- u : don't sort the rolls
+- +# : add a number to the sum of the rolls

@@ -218,15 +218,19 @@ end
 # roll - does dnd dice rolling
 $bot.command(:roll, min_args: 1, max_args: 20, description: "Roll some D&D Dice.", usage: "%roll help") do |event, *args|
   sets = 1
+  add = 0
   dice = []
   mods = []
   # collect the arguments
   for arg in args
     if arg.match?(/^\d+$/)
       sets = arg
-    elsif arg.match?(/^\d+d\d+$/)
+    elsif arg.match?(/^\d+d\d+(\+\d+)?$/)
       dice.push(arg)
     elsif arg.match?(/^\w+$/)
+      mods.push(arg)
+    elsif arg.match?(/^\+\d+$/)
+      puts "saw a plus :)"
       mods.push(arg)
     end
   end
@@ -235,7 +239,8 @@ $bot.command(:roll, min_args: 1, max_args: 20, description: "Roll some D&D Dice.
   sets.to_i.times do
     rolls = []
     for die in dice
-      full, num, type = * /(\d+)d(\d+)/.match(die)
+      full, num, type, plus = * /(\d+)d(\d+)(\+\d*)?/.match(die)
+      add += plus.delete_prefix("+").to_i if plus
       num.to_i.times do
         rolls.push([rand(1..type.to_i), type.to_i])
       end
@@ -279,6 +284,10 @@ $bot.command(:roll, min_args: 1, max_args: 20, description: "Roll some D&D Dice.
         end
       when /u/ # unsorted
         sort = false
+      when /\+\d+/ # add to sum
+        puts "got to the adding part :)" + mod
+        num = mod.delete_prefix("+").to_i
+        add += num
     end
   end
   # sort?
@@ -291,7 +300,7 @@ $bot.command(:roll, min_args: 1, max_args: 20, description: "Roll some D&D Dice.
   out = "Rolls:"
   for rolls in roll_sets
     out << "\n"
-    sum = 0
+    sum = add
     for die in rolls
       out << die[0].to_s << ", "
       sum += die[0]
