@@ -27,6 +27,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - If you mention Rubot while saying some rude words, it will get angry and remove 1💎 from your score.
 - If you mention and thank Rubot, it will respond politely.
 - If you mention Rubot and say hello, it will say hi back. Once per 24 hours, you will receive 1💎 for saying hello to Rubot.
+- If Rubot hears a particular person say the word "kill," it will respond accordingly.
 
 ## Roll Options
 **%roll** *#d#* (as many as you want)

@@ -6,7 +6,7 @@
 last_hi = Time.new(2000) #defaults to January 1, 2000
 
 # insulted
-$bot.mention(start_with: /fuck /i) do |event|
+$bot.mention(start_with: /(\s|\W|^)fuck(\s|\W|$)/i) do |event|
   if event.author.id == 292749588551565314 #corey
     $bot.send_message(event.channel.id, 'Shut up, loser.')
   else
@@ -34,7 +34,7 @@ def hello(event,last_hi,bot)
   end
   event.message.timestamp
 end
-$bot.mention(contains: /hello/i) do |event| last_hi=hello(event,last_hi,$bot) end
-$bot.mention(contains: /hi/i) do |event| last_hi=hello(event,last_hi,$bot) end
-$bot.mention(contains: /greetings/i) do |event| last_hi=hello(event,last_hi,$bot) end
-$bot.mention(contains: /howdy/i) do |event| last_hi=hello(event,last_hi,$bot) end
+$bot.mention(contains: /(\s|\W|^)(hello|hi|greetings|howdy)(\s|\W|$)/i) do |event| last_hi=hello(event,last_hi,$bot) end
+# $bot.mention(contains: /hi/i) do |event| last_hi=hello(event,last_hi,$bot) end
+# $bot.mention(contains: /greetings/i) do |event| last_hi=hello(event,last_hi,$bot) end
+# $bot.mention(contains: /howdy/i) do |event| last_hi=hello(event,last_hi,$bot) end

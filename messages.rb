@@ -10,7 +10,7 @@ $bot.message(content: 'Ping!') do |event|
 end
 
 #when the $bot sees "Corey"
-$bot.message(content: 'Corey') do |event|
+$bot.message(content: '(\s|\W|^)Corey(\s|\W|$)') do |event|
   $bot.send_message(event.channel.id, "Corey's in the House!")
 end
 
@@ -24,13 +24,18 @@ $bot.reaction_add(emoji: "\u{1F5FF}") do |event| # reacts with moyai
 end
 
 # hell yeah
-$bot.message(contains: /hell.+yeah/i) do |event|
+$bot.message(contains: /(\s|\W|^)hell.+yeah(\s|\W|$)/i) do |event|
   $bot.send_message(event.channel.id, event.content[/hell/i]+' '+event.content[/yeah/i])
 end
 
 # smile
-$bot.message(contains: /smile/i) do |event|
+$bot.message(contains: /(\s|\W|^)smile(\s|\W|$)/i) do |event|
   $bot.send_message(event.channel.id, event.content[/smile/i])
+end
+
+# eric says kill
+$bot.message(contains: /(\s|\W|^)kill(\s|\W|$)/i, from: 209538025066070016) do |event|
+  $bot.send_message(event.channel.id, "I choose kindness... :shrug:")
 end
 
 # markov listening
