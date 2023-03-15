@@ -356,3 +356,11 @@ $bot.command(:imitate, min_args: 1, max_args: 2, description: "Rubot imitates a 
     end
   end
 end
+
+$bot.command(:eightball, description: "Gives you an 8-ball-like response.", usage: "Just say \""+PREFIX+"eightball\"") do |event|
+  response = ["It is certain", "It is decidedly so", "Without a doubt", "Yes, definitely", "You may rely on it",
+              "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes",
+              "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again",
+              "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"].shuffle![0]
+  $bot.send_message(event.channel.id, response)
+end
