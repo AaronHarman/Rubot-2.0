@@ -18,6 +18,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - **%imitate** *<user mention> [max words]* : Uses Markov chains to imitate a user's messages. If not given a max number of words, it will stop after 100 words. It will often stop before hitting the max number of words if it does not know a word to follow the words it has already generated.
 - **%roll** : Rolls dice. This command has quite a few options, see the Roll Options section.
 - **%eightball** : Responds with a random 8-ball response.
+- **%choose** : Follow the command with choices seperated by spaces, "or", or commas. Rubot will choose one.
 
 ## Non-command Functionality
 - Saying "Ping!" will cause Rubot to respond "Pong!", following up with the amount of time taken to process the request.
