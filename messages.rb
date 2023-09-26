@@ -38,6 +38,11 @@ $bot.message(contains: /(\s|\W|^)kill(\s|\W|$)/i, from: 209538025066070016) do |
   $bot.send_message(event.channel.id, "I choose kindness... :shrug:")
 end
 
+# crazy
+$bot.message(contains: /(\s|\W|^)crazy(\s|\W|$)/i) do |event|
+  $bot.send_message(event.channel.id, "Crazy? I was crazy once.")
+end
+
 # markov listening
 $bot.message do |event|
   unless event.message.content.start_with?('%')

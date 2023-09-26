@@ -25,6 +25,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - If Rubot sees anyone use or react with the 🗿 emoji, it will respond "unhappily."
 - If you say "hell yeah" in a message, Rubot will repeat your excitement, even matching the case with which you typed it.
 - If you say "smile" in a message, Rubot will echo your happiness, even matching the case with which you typed it.
+- If you say "crazy" in a message, Rubot will relate to the idea of being crazy
 - If you say "Corey," Rubot will make a cool reference.
 - If you mention Rubot while saying some rude words, it will get angry and remove 1💎 from your score.
 - If you mention and thank Rubot, it will respond politely.
