@@ -310,6 +310,39 @@ $bot.command(:roll, min_args: 1, max_args: 20, description: "Roll some D&D Dice.
   out
 end
 
+# eightball - gives an 8-ball response
+$bot.command(:eightball, description: "Gives you an 8-ball-like response.", usage: "Just say \""+PREFIX+"eightball\"") do |event|
+  response = ["It is certain", "It is decidedly so", "Without a doubt", "Yes, definitely", "You may rely on it",
+              "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes",
+              "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again",
+              "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"].shuffle![0]
+  $bot.send_message(event.channel.id, response)
+end
+
+# choose - chooses between options
+$bot.command(:choose, description: "Chooses between options that you give.", usage: "Say \""+PREFIX+"choose\" and a list of options") do |event|
+  msg = event.message.content.delete_prefix(PREFIX+"choose").strip
+  opt = []
+  if msg.include?(" or ")
+    opt = msg.split(" or ")
+  elsif msg.include?(",")
+    opt = msg.split(",")
+  elsif msg == "" or msg == nil
+    opt = [""]
+  else
+    opt = msg.split
+  end
+  response = opt.shuffle[0].strip
+  $bot.send_message(event.channel.id, "I choose "+response)
+end
+
+# rating - gives a random rating
+$bot.command(:rating, description: "Gives you a random rating between -3 and +3", usage: "Just say \""+PREFIX+"rating\"") do |event|
+  response = ["-3","-2","-1","+1","+2","+3"].shuffle![0]
+  $bot.send_message(event.channel.id, response)
+end
+
+
 # Markov Functions
 # consent - adds your id to the list that are allowed to be listened to
 $bot.command(:consent, description: "Consent to have your messages used to let Rubot learn to imitate you.", usage: "Just say \""+PREFIX+"consent\"") do |event|
@@ -357,28 +390,4 @@ $bot.command(:imitate, min_args: 1, max_args: 2, description: "Rubot imitates a 
   end
 end
 
-# eightball - gives an 8-ball response
-$bot.command(:eightball, description: "Gives you an 8-ball-like response.", usage: "Just say \""+PREFIX+"eightball\"") do |event|
-  response = ["It is certain", "It is decidedly so", "Without a doubt", "Yes, definitely", "You may rely on it",
-              "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes",
-              "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again",
-              "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful"].shuffle![0]
-  $bot.send_message(event.channel.id, response)
-end
 
-# choose - chooses between options
-$bot.command(:choose, description: "Chooses between options that you give.", usage: "Say \""+PREFIX+"choose\" and a list of options") do |event|
-  msg = event.message.content.delete_prefix(PREFIX+"choose").strip
-  opt = []
-  if msg.include?(" or ")
-    opt = msg.split(" or ")
-  elsif msg.include?(",")
-    opt = msg.split(",")
-  elsif msg == "" or msg == nil
-    opt = [""]
-  else
-    opt = msg.split
-  end
-  response = opt.shuffle[0].strip
-  $bot.send_message(event.channel.id, "I choose "+response)
-end

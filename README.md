@@ -19,6 +19,7 @@ Profile picture art by Eric Bradley (@eric_i_guess)
 - **%roll** : Rolls dice. This command has quite a few options, see the Roll Options section.
 - **%eightball** : Responds with a random 8-ball response.
 - **%choose** : Follow the command with choices seperated by spaces, "or", or commas. Rubot will choose one.
+- **%rating** : Rubot gives a rating between -3 or +3
 
 ## Non-command Functionality
 - Saying "Ping!" will cause Rubot to respond "Pong!", following up with the amount of time taken to process the request.
