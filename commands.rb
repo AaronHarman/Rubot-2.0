@@ -342,6 +342,16 @@ $bot.command(:rating, description: "Gives you a random rating between -3 and +3"
   $bot.send_message(event.channel.id, response)
 end
 
+# job - posts a silly image
+$bot.command(:job, description: "Posts a job-related image", usage: "Just say \""+PREFIX+"job\"") do |event|
+  roll = rand(100)
+  if roll == 0 # even sillier image
+    $bot.send_message(event.channel.id, "https://cdn.discordapp.com/attachments/870806083206270998/1199433679638896690/Screenshot_20240118_105552_Spotify.jpg?ex=65c286a9&is=65b011a9&hm=ec42e349e0a229256e71a08a04f819e85e0a0c9346f6e46b2a5617a68e95a452&")
+  else
+    $bot.send_message(event.channel.id, "https://cdn.discordapp.com/attachments/870806083206270998/1199433679378853889/Screenshot_20240118_131952_Gallery.jpg?ex=65c286a9&is=65b011a9&hm=5fd66bd4abb1ca84c7ab24c26aa67f9a4642e47bb5ca4f89712431783e98b47f&")
+  end
+end
+
 
 # Markov Functions
 # consent - adds your id to the list that are allowed to be listened to
