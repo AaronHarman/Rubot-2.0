@@ -332,8 +332,15 @@ $bot.command(:choose, description: "Chooses between options that you give.", usa
   else
     opt = msg.split
   end
-  response = opt.shuffle[0].strip
+  opt.shuffle!
+  response = opt[0].strip
   $bot.send_message(event.channel.id, "I choose "+response)
+  if opt.size > 1 and rand(15) == 0 # sometimes change its mind after a few seconds, for comedic effect
+    sleep(3)
+    start = ["Wait no, I actually choose ", "Hold on, actually I choose ", "Whoops, I meant to choose ", "Sorry, after further consideration I choose "].shuffle[0]
+    response = opt[1].strip
+    $bot.send_message(event.channel.id, start+response)
+  end
 end
 
 # rating - gives a random rating
