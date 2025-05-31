@@ -134,6 +134,8 @@ $bot.command(:shitpost, min_args: 0, max_args: 2, description: "Says some nonsen
     channelID = 756605397363589170
   elsif event.server.id == 978403128456118333 # errik server
     channelID = 978403130234515487
+  elsif event.server.id == 1290787049397288970 # anna server
+    channelID = 1290787049863118879
   else # any other channel
     channelID = event.channel.id
   end
@@ -182,6 +184,8 @@ $bot.command(:realshitpost, min_args: 0, max_args: 2, description: "Says the bes
     channelID = 756605397363589170
   elsif event.server.id == 978403128456118333 # errik server
     channelID = 978403130234515487
+  elsif event.server.id == 1290787049397288970 # anna server
+    channelID = 1290787049863118879
   else # any other channel
     channelID = event.channel.id
   end
